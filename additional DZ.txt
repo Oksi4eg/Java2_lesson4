@@ -1,0 +1,92 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Main {
+    public static void main(String[] args) {
+        String a = "Заполнить";
+        String b = "Заполнить";
+        String c = "Заполнить";
+        new MyWindow(a,b,c);
+    }
+}
+
+
+class MyWindow extends JFrame {
+    public MyWindow(String a, String b, String c) {
+        setTitle("MyWindows");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(500, 300, 400, 400);
+
+
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        JTextField txt1 = new JTextField("Фамилия:"+a);
+        txt1.setEnabled(false);
+        JTextField txt2 = new JTextField("Имя:"+b);
+        txt2.setEnabled(false);
+        JTextField txt3 = new JTextField("Отчество:"+c);
+        txt3.setEnabled(false);
+        JButton btnOk = new JButton("Заполнить");
+
+        txt1.setAlignmentY(CENTER_ALIGNMENT);
+        txt2.setAlignmentY(CENTER_ALIGNMENT);
+        txt3.setAlignmentY(CENTER_ALIGNMENT);
+        btnOk.setAlignmentY(CENTER_ALIGNMENT);
+
+        add(txt1);
+        add(txt2);
+        add(txt3);
+        add(btnOk);
+        setVisible(true);
+
+        btnOk.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MyWindow2();
+            }
+        });
+    }
+}
+
+class MyWindow2 extends JFrame {
+    public MyWindow2() {
+        setTitle("Заполнить");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(510, 310, 380, 380);
+
+
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        JTextField txt1 = new JTextField("Фамилия");
+        txt1.setEnabled(true);
+        JTextField txt2 = new JTextField("Имя");
+        txt2.setEnabled(true);
+        JTextField txt3 = new JTextField("Отчество:");
+        txt3.setEnabled(true);
+
+        JButton btnOk = new JButton("Запомнить");
+
+        txt1.setAlignmentY(CENTER_ALIGNMENT);
+        txt2.setAlignmentY(CENTER_ALIGNMENT);
+        txt3.setAlignmentY(CENTER_ALIGNMENT);
+        btnOk.setAlignmentY(CENTER_ALIGNMENT);
+
+        add(txt1);
+        add(txt2);
+        add(txt3);
+        add(btnOk);
+        setVisible(true);
+
+        btnOk.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new MyWindow(txt1.getText(),txt2.getText(),txt3.getText());
+
+            }
+        });
+
+    }
+
+}
